@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="events">
+        <title>Cuisine Connect</title>
+        <link rel="stylesheet" href="static/style/style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">        
+    </head>
+    <body class="bGColor">
+        <nav class="navbar sticky-top navbar-expand-sm bg-light navbar-light justify-content-center">
+            <div class="container-fluid">
+                    <ul class="navbar-nav">
+                        <li><a class="navbar-brand" href = "index.html"><img src="static/img/logo.png" style="width:240px;height:90px"></a></li>
+                        <li class="nav-item" ><a style="font-size: 150%; padding-top: 30px;" class="nav-link" href = "index.html"><b>Home</b></a></li>
+                        <li class="nav-item" ><a style="font-size: 150%; padding-top: 30px;" class="nav-link" href = "createEvent.html"><b>Create an Event</b></a></li>
+                    </ul>
+                    <ul class = "navbar-nav navbar-right">
+                        <li class="nav-item" style="font-size: 130%; padding-right: 30px;"><a class="nav-link" href = "profile.html">Profile</a></li>
+                    </ul>
+            </div>
+        </nav>
+        <div>
+            <div class="heading">
+                <h1>Event Name </h1><br><br>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3"><div class="box"><image class="cropImage" src="static/img/1.jpg"></image></div>
+                        <br><b>Location:</b> 12 Albert Street
+                        <br><b>Date:</b> 1 Jan 2023 - 31 Dec 2023
+                        <br><b>Time:</b> 8am - 8pm
+                        <br><b>Status:</b> Open
+                        <br><b>Event Organiser:</b> ILoveFood
+                        <br><br><h4>Comments</h4>
+                        <div class="overflow-auto reviewsColor">
+                            <div class="reviews">
+                                <div><b>User 1:</b><br> Comments...<div class="text-muted"> posted on: 1 Jan 2023</div></div><hr class="hr hr-blurry" />
+                                <div><b>User 1:</b><br> Comments...<div class="text-muted"> posted on: 1 Jan 2023</div></div><hr class="hr hr-blurry" />
+                                <div><b>User 1:</b><br> Comments...<div class="text-muted"> posted on: 1 Jan 2023</div></div><hr class="hr hr-blurry" />
+                                <div><b>User 1:</b><br> Comments...<div class="text-muted"> posted on: 1 Jan 2023</div></div><hr class="hr hr-blurry" />
+                                <div><b>User 1:</b><br> Comments...<div class="text-muted"> posted on: 1 Jan 2023</div></div><hr class="hr hr-blurry" />
+                                <div><b>User 1:</b><br> Comments...<div class="text-muted"> posted on: 1 Jan 2023</div></div><hr class="hr hr-blurry" />
+                                <div><b>User 1:</b><br> Comments...<div class="text-muted"> posted on: 1 Jan 2023</div></div><hr class="hr hr-blurry" />
+                                <div><b>User 1:</b><br> Comments...<div class="text-muted"> posted on: 1 Jan 2023</div></div><hr class="hr hr-blurry" />
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Write a comment..." aria-label="Write a comment..." aria-describedby="button-addon2">
+                            <button class="btn btn-outline-success" type="button" id="button-addon2">Post</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <h4>Description:</h4>
+                        Explore the artistry and innovation of culinary utensils at our exhibition! Discover the tools that shape gastronomic creativity, from ancient to modern, in an immersive showcase of craftsmanship and functionality. Join us for a culinary journey like no other!
+                        <br><br><br><h4>About This Event:</h4>
+                        <br><b>Tickets Details:</b>
+                        <br>- General Admission: $9.98 AUD
+                        <br>-  VIP Pass (Includes exclusive access and chef meet-and-greet): $39.98 AUD
+                        <br><br><b>Event Guidelines:</b>
+                        <br>- Ticket Admission: Please have your e-ticket or printed ticket ready for entry.
+                        <br>- Entry Times: Admittance is permitted only during event hours.
+                        <br>- Dress Code: Smart casual attire is recommended.
+                        <br>- Photography: Feel free to take photos but be mindful of others.
+                        <br>- Food Tasting: Follow serving guidelines to ensure all guests can enjoy the tastings.
+                        <br>- Safety: Follow all posted safety and health guidelines.
+                        <br><br><b>Terms and Conditions:</b>
+                        <br>- Tickets are non-refundable.
+                        <br>- We reserve the right to refuse entry or remove any attendee for disruptive behavior.
+                        <br>- By attending, you grant permission for your image and likeness to be used in event-related promotional materials.
+                        <br>- All food and drink items are subject to availability.
+                        <br>- VIP passholders are entitled to exclusive access and must follow event staff instructions.
+                        <br>- Children must be supervised at all times.
+                    </div>
+                    <div class="col-sm-4"><div class="formLayout"><div class="container">
+                        <h4>Book a Ticket Now!</h4>
+                        <br><b>General Admission ---- $9.98AUD</b><br>
+                        <div class="input-group">
+                            <div class="input-group-text">Quantity:</div>
+                            <select class="form-select" id="GAquantity">
+                                <option value="0" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div><br>
+                        <br><b>VIP ---- $39.98AUD</b><br>
+                        <div class="input-group">
+                            <div class="input-group-text">Quantity:</div>
+                            <select class="form-select" id="VIPquantity">
+                                <option value="0" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div><br>
+                        <h5>Total Price:</h5><h6>$X.XX AUD</h6><br>
+                        <button class="btn btn-outline-success" type="button">Continue to Payment 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                            </svg>
+                        </button>
+                    </div></div></div>
+                </div>
+                
+            </div>
+        <br><br><br><br>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    </body>
+</html>
