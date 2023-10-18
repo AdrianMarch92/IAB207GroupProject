@@ -1,8 +1,9 @@
-from flask import Blueprint, flash, render_template, request, url_for, redirect
+from flask import Blueprint, render_template, request,redirect,url_for,flash
+from .forms import LoginForm, RegisterForm
+#new imports:
+from flask_login import login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash,check_password_hash
-#from .models import User
-from .forms import LoginForm,RegisterForm
-from flask_login import login_user, login_required,logout_user
+from .models import User
 from . import db
 
 #create a blueprint
