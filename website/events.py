@@ -11,10 +11,10 @@ bp = Blueprint('event', __name__, url_prefix='/events')
 
 @bp.route('/<id>')
 def show(id):
-    destination = Event.query.filter_by(id=id).first()
+    event = Event.query.filter_by(id=id).first()
     # create the comment form
     cform = CommentForm()    
-    return render_template('destinations/show.html', destination=destination, form=cform)
+    return render_template('events/show.html', event=event, form=cform)
 
 @bp.route('/create', methods = ['GET', 'POST'])
 #@login_required
