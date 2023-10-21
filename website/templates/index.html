@@ -1,180 +1,160 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta content="home page">
-        <title>Cuisine Connect</title>
-        <link rel="stylesheet" href="static/style/style.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">        
-    </head>
-    <body class="bGColor">
-        <nav class="navbar sticky-top navbar-expand-sm bg-light navbar-light justify-content-center">
-            <div class="container-fluid">
-                    <ul class="navbar-nav">
-                        <li><a class="navbar-brand" href = "index.html"><img src="static/img/logo.png" style="width:240px;height:90px"></a></li>
-                        <li class="nav-item" ><a style="font-size: 150%; padding-top: 30px;" class="active nav-link" href = "index.html"><b>Home</b></a></li>
-                        <li class="nav-item" ><a style="font-size: 150%; padding-top: 30px;" class="nav-link" href = "createEvent.html"><b>Create an Event</b></a></li>
-                    </ul>
-                    <ul class = "navbar-nav navbar-right">
-                        <li class="nav-item" style="font-size: 130%; padding-right: 30px;"><a class="nav-link" href = "profile.html">Profile</a></li>
-                    </ul>
+{% extends 'base.html' %}
+{% block header %}
+    <div class="videoRes">
+        <video id="promo" muted autoplay loop preload><source src="static/img/Promotion.mp4" type="video/mp4"></video>
+    </div>
+{% endblock %}
+{% block content %}
+    <div>
+        <div class="heading" id="recEve">
+            <h1>Recommended Events</h1><br><br>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3"><a href="eventDetails.html" style="text-decoration:none; color:black;"><div class="box"><image class="cropImage" src="static/img/1.jpg"></image></div><h5><b>Event 1</b></h5></a></div>
+                <div class="col-sm-3"><a href="eventDetails.html" style="text-decoration:none; color:black;"><div class="box"><image class="cropImage" src="static/img/2.jpg"></image></div><h5><b>Event 2</b></h5></a></div>
+                <div class="col-sm-3"><a href="eventDetails.html" style="text-decoration:none; color:black;"><div class="box"><image class="cropImage" src="static/img/3.jpg"></image></div><h5><b>Event 3</b></h5></a></div>
+                <div class="col-sm-3"><a href="eventDetails.html" style="text-decoration:none; color:black;"><div class="box"><image class="cropImage" src="static/img/4.jpg"></image></div><h5><b>Event 4</b></h5></a></div>
             </div>
-        </nav>
-        <div class="videoRes">
-            <video id="promo" muted autoplay loop preload><source src="static/img/Promotion.mp4" type="video/mp4"></video>
         </div>
         <div>
-            <div class="heading" id="recEve">
-                <h1>Recommended Events</h1><br><br>
-            </div>
-            <div class="container">
+            <h1 class="heading">All Events</h1><br><br>
+            <form class="d-flex" role="search" id="searchBar">
+                <input type="text" class="form-control me-2" name="search" placeholder="Search">
+                <button type="submit" class="btn btn-outline-success searchBarBtn">Search</button>
+                <button type="button" class="btn btn-outline-dark searchBarBtn" data-bs-toggle="collapse" data-bs-target="#filter">Filter</button>
+            </form><br>
+            <div id="filter" class="collapse container">
                 <div class="row">
-                    <div class="col-sm-3"><a href="eventDetails.html" style="text-decoration:none; color:black;"><div class="box"><image class="cropImage" src="static/img/1.jpg"></image></div><h5><b>Event 1</b></h5></a></div>
-                    <div class="col-sm-3"><a href="eventDetails.html" style="text-decoration:none; color:black;"><div class="box"><image class="cropImage" src="static/img/2.jpg"></image></div><h5><b>Event 2</b></h5></a></div>
-                    <div class="col-sm-3"><a href="eventDetails.html" style="text-decoration:none; color:black;"><div class="box"><image class="cropImage" src="static/img/3.jpg"></image></div><h5><b>Event 3</b></h5></a></div>
-                    <div class="col-sm-3"><a href="eventDetails.html" style="text-decoration:none; color:black;"><div class="box"><image class="cropImage" src="static/img/4.jpg"></image></div><h5><b>Event 4</b></h5></a></div>
-                </div>
-            </div>
-            <div>
-                <h1 class="heading">All Events</h1><br><br>
-                <form class="d-flex" role="search" id="searchBar">
-                    <input type="text" class="form-control me-2" name="search" placeholder="Search">
-                    <button type="submit" class="btn btn-outline-success searchBarBtn">Search</button>
-                    <button type="button" class="btn btn-outline-dark searchBarBtn" data-bs-toggle="collapse" data-bs-target="#filter">Filter</button>
-                </form><br>
-                <div id="filter" class="collapse container">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <h5><b>Cuisine Type</b></h5>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <b>Asia</b>
-                                    <form>
-                                        <input type="checkbox" id="cuisine1" name="cuisine1" value="Chinese">
-                                        <label for="cuisine1">Chinese</label><br>
-                                        <input type="checkbox" id="cuisine2" name="cuisine2" value="Indian">
-                                        <label for="cuisine2">Indian</label><br>
-                                        <input type="checkbox" id="cuisine3" name="cuisine3" value="Japanese">
-                                        <label for="cuisine3">Japanese</label><br>
-                                        <input type="checkbox" id="cuisine4" name="cuisine4" value="Thai">
-                                        <label for="cuisine4">Thai</label><br>
-                                        <input type="checkbox" id="cuisine5" name="cuisine5" value="Korean">
-                                        <label for="cuisine5">Korean</label><br>
-                                        <input type="checkbox" id="cuisine6" name="cuisine6" value="Vietnamese">
-                                        <label for="cuisine6">Vietnamese</label><br>
-                                        <input type="checkbox" id="cuisine7" name="cuisine7" value="Malay">
-                                        <label for="cuisine7">Malay</label><br>
-                                    </form>
-                                </div>
-                                <div class="col-sm-3">
-                                    <b>Europe</b>
-                                    <form>
-                                        <input type="checkbox" id="cuisine8" name="cuisine8" value="Italian">
-                                        <label for="cuisine8">Italian</label><br>
-                                        <input type="checkbox" id="cuisine9" name="cuisine9" value="French">
-                                        <label for="cuisine9">French</label><br>
-                                        <input type="checkbox" id="cuisine10" name="cuisine10" value="Greek">
-                                        <label for="cuisine10">Greek</label><br>
-                                        <input type="checkbox" id="cuisine11" name="cuisine11" value="German">
-                                        <label for="cuisine11">German</label><br>
-                                        <input type="checkbox" id="cuisine12" name="cuisine12" value="Russian">
-                                        <label for="cuisine12">Russian</label><br>
-                                    </form>
-                                </div>
-                                <div class="col-sm-3">
-                                    <b>North America</b>
-                                    <form>
-                                        <input type="checkbox" id="cuisine13" name="cuisine13" value="American">
-                                        <label for="cuisine13">American</label><br>
-                                        <input type="checkbox" id="cuisine14" name="cuisine14" value="Mexican">
-                                        <label for="cuisine14">Mexican</label><br><br>
-                                    </form>
-                                    <b>South America</b>
-                                    <form>
-                                        <input type="checkbox" id="cuisine15" name="cuisine15" value="Brazilian">
-                                        <label for="cuisine15">Brazilian</label><br>
-                                        <input type="checkbox" id="cuisine16" name="cuisine16" value="Argentinian">
-                                        <label for="cuisine16">Argentinian</label><br>
-                                        <input type="checkbox" id="cuisine17" name="cuisine17" value="Peruvian">
-                                        <label for="cuisine17">Peruvian</label><br>
-                                    </form>
-                                </div>
-                                <div class="col-sm-3">
-                                    <b>Africa</b>
-                                    <form>
-                                        <input type="checkbox" id="cuisine18" name="cuisine18" value="Moroccan">
-                                        <label for="cuisine18">Moroccan</label><br>
-                                        <input type="checkbox" id="cuisine19" name="cuisine19" value="South African">
-                                        <label for="cuisine19">South African</label><br><br>
-                                    </form>
-                                    <b>Other</b>
-                                    <form>
-                                        <input type="checkbox" id="cuisine20" name="cuisine20" value="Australian">
-                                        <label for="cuisine20">Australian</label><br>
-                                        <input type="checkbox" id="cuisine21" name="cuisine21" value="OtherCuisines">
-                                        <label for="cuisine21">Other</label><br>
-                                    </form>
-                                </div>
+                    <div class="col-sm-8">
+                        <h5><b>Cuisine Type</b></h5>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <b>Asia</b>
+                                <form>
+                                    <input type="checkbox" id="cuisine1" name="cuisine1" value="Chinese">
+                                    <label for="cuisine1">Chinese</label><br>
+                                    <input type="checkbox" id="cuisine2" name="cuisine2" value="Indian">
+                                    <label for="cuisine2">Indian</label><br>
+                                    <input type="checkbox" id="cuisine3" name="cuisine3" value="Japanese">
+                                    <label for="cuisine3">Japanese</label><br>
+                                    <input type="checkbox" id="cuisine4" name="cuisine4" value="Thai">
+                                    <label for="cuisine4">Thai</label><br>
+                                    <input type="checkbox" id="cuisine5" name="cuisine5" value="Korean">
+                                    <label for="cuisine5">Korean</label><br>
+                                    <input type="checkbox" id="cuisine6" name="cuisine6" value="Vietnamese">
+                                    <label for="cuisine6">Vietnamese</label><br>
+                                    <input type="checkbox" id="cuisine7" name="cuisine7" value="Malay">
+                                    <label for="cuisine7">Malay</label><br>
+                                </form>
+                            </div>
+                            <div class="col-sm-3">
+                                <b>Europe</b>
+                                <form>
+                                    <input type="checkbox" id="cuisine8" name="cuisine8" value="Italian">
+                                    <label for="cuisine8">Italian</label><br>
+                                    <input type="checkbox" id="cuisine9" name="cuisine9" value="French">
+                                    <label for="cuisine9">French</label><br>
+                                    <input type="checkbox" id="cuisine10" name="cuisine10" value="Greek">
+                                    <label for="cuisine10">Greek</label><br>
+                                    <input type="checkbox" id="cuisine11" name="cuisine11" value="German">
+                                    <label for="cuisine11">German</label><br>
+                                    <input type="checkbox" id="cuisine12" name="cuisine12" value="Russian">
+                                    <label for="cuisine12">Russian</label><br>
+                                </form>
+                            </div>
+                            <div class="col-sm-3">
+                                <b>North America</b>
+                                <form>
+                                    <input type="checkbox" id="cuisine13" name="cuisine13" value="American">
+                                    <label for="cuisine13">American</label><br>
+                                    <input type="checkbox" id="cuisine14" name="cuisine14" value="Mexican">
+                                    <label for="cuisine14">Mexican</label><br><br>
+                                </form>
+                                <b>South America</b>
+                                <form>
+                                    <input type="checkbox" id="cuisine15" name="cuisine15" value="Brazilian">
+                                    <label for="cuisine15">Brazilian</label><br>
+                                    <input type="checkbox" id="cuisine16" name="cuisine16" value="Argentinian">
+                                    <label for="cuisine16">Argentinian</label><br>
+                                    <input type="checkbox" id="cuisine17" name="cuisine17" value="Peruvian">
+                                    <label for="cuisine17">Peruvian</label><br>
+                                </form>
+                            </div>
+                            <div class="col-sm-3">
+                                <b>Africa</b>
+                                <form>
+                                    <input type="checkbox" id="cuisine18" name="cuisine18" value="Moroccan">
+                                    <label for="cuisine18">Moroccan</label><br>
+                                    <input type="checkbox" id="cuisine19" name="cuisine19" value="South African">
+                                    <label for="cuisine19">South African</label><br><br>
+                                </form>
+                                <b>Other</b>
+                                <form>
+                                    <input type="checkbox" id="cuisine20" name="cuisine20" value="Australian">
+                                    <label for="cuisine20">Australian</label><br>
+                                    <input type="checkbox" id="cuisine21" name="cuisine21" value="OtherCuisines">
+                                    <label for="cuisine21">Other</label><br>
+                                </form>
                             </div>
                         </div>
-                        <div class="col-sm-2">
-                            <h5><b>Event Type</b></h5>
-                            <form>
-                                <input type="checkbox" id="event1" name="event1" value="Festivals">
-                                <label for="event1">Festivals</label><br>
-                                <input type="checkbox" id="event2" name="event2" value="Markets">
-                                <label for="event2">Markets</label><br>
-                                <input type="checkbox" id="event3" name="event3" value="Classes">
-                                <label for="event3">Classses</label><br>
-                                <input type="checkbox" id="event4" name="event4" value="Exhibitions">
-                                <label for="event4">Exhibitions</label><br>
-                                <input type="checkbox" id="event5" name="event5" value="OtherEvents">
-                                <label for="event5">Other</label><br>
-                            </form>
-                        </div>
-                        <div class="col-sm-2">
-                            <h5><b>Others</b></h5>
-                            <form>
-                                <input type="checkbox" id="other1" name="other1" value="Specials">
-                                <label for="other1">Specials</label><br>
-                            </form>
-                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5><b>Event Type</b></h5>
+                        <form>
+                            <input type="checkbox" id="event1" name="event1" value="Festivals">
+                            <label for="event1">Festivals</label><br>
+                            <input type="checkbox" id="event2" name="event2" value="Markets">
+                            <label for="event2">Markets</label><br>
+                            <input type="checkbox" id="event3" name="event3" value="Classes">
+                            <label for="event3">Classses</label><br>
+                            <input type="checkbox" id="event4" name="event4" value="Exhibitions">
+                            <label for="event4">Exhibitions</label><br>
+                            <input type="checkbox" id="event5" name="event5" value="OtherEvents">
+                            <label for="event5">Other</label><br>
+                        </form>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5><b>Others</b></h5>
+                        <form>
+                            <input type="checkbox" id="other1" name="other1" value="Specials">
+                            <label for="other1">Specials</label><br>
+                        </form>
                     </div>
                 </div>
-                <br><br>
-                <div class="container">
-                    <a href="eventDetails.html" style="text-decoration:none; color:black;">
-                        <div class="row">
-                            <div class="col-sm-2"><div class="box"><image class="cropImage" src="static/img/1.jpg"></image></div></div>
-                            <div class="col-sm-6"><h5><b>Event 1</b></h5><b>Description:</b> Explore the artistry and innovation of culinary utensils at our exhibition! Discover the tools that shape gastronomic creativity, from ancient to modern, in an immersive showcase of craftsmanship and functionality. Join us for ...</div>
-                            <div class="col-sm-4"><b>Location:</b> 12 Albert Street<br><b>Date:</b> 1 Jan 2023 - 31 Dec 2023<br><b>Time:</b> 8am - 8pm<br><b>Status:</b> Open<br><b>Event Organiser:</b> ILoveFood</div>
-                        </div>
-                    </a>
-                    <a href="eventDetails.html" style="text-decoration:none; color:black;">
-                        <div class="row">
-                            <div class="col-sm-2"><div class="box"><image class="cropImage" src="static/img/2.jpg"></image></div></div>
-                            <div class="col-sm-6"><h5><b>Event 2</b></h5><b>Description:</b> Join us for a delectable culinary journey featuring diverse flavors, live music, and a vibrant atmosphere. Discover new tastes and savor every bite at our unforgettable food event!</div>
-                            <div class="col-sm-4"><b>Location:</b> 23 Bacon Street<br><b>Date:</b> 1 Jun 2023 - 4 Jun 2023<br><b>Time:</b> 6pm - 10pm<br><b>Status:</b> Sold Out<br><b>Event Organiser:</b> ILoveFood</div>
-                        </div>
-                    </a>
-                    <a href="eventDetails.html" style="text-decoration:none; color:black;">
-                        <div class="row">
-                            <div class="col-sm-2"><div class="box"><image class="cropImage" src="static/img/3.jpg"></image></div></div>
-                            <div class="col-sm-6"><h5><b>Event 3</b></h5><b>Description:</b> Indulge in the flavors of Japan at our food festival! Experience the exquisite taste of sushi, ramen, tempura, and more. Immerse yourself in Japanese culture with traditional performances and vibrant decor. Join us for a culinary ...</div>
-                            <div class="col-sm-4"><b>Location:</b> 34 Charlotte Street<br><b>Date:</b> 20 Nov 2023 - 3 Dec 2023<br><b>Time:</b> 6pm - 10pm<br><b>Status:</b> Open<br><b>Event Organiser:</b> ILoveFood</div>
-                        </div>
-                    </a>
-                    <a href="eventDetails.html" style="text-decoration:none; color:black;">
-                        <div class="row">
-                            <div class="col-sm-2"><div class="box"><image class="cropImage" src="static/img/4.jpg"></image></div></div>
-                            <div class="col-sm-6"><h5><b>Event 4</b></h5><b>Description:</b> Embark on a delicious journey to Italy in our hands-on food class! Learn the art of crafting authentic Italian dishes, from pasta-making to mastering sauces. Join our experienced chefs, savor the flavors, and take home new ...</div>
-                            <div class="col-sm-4"><b>Location:</b> 45 Delphine Street<br><b>Date:</b> 1 Jan 2023 - 31 Dec 2023<br><b>Time:</b> 9am - 11am<br><b>Status:</b> Open<br><b>Event Organiser:</b> ILoveFood</div>
-                        </div>
-                    </a>
-                </div>
             </div>
-            <br><br><br><br>
+            <br><br>
+            <div class="container">
+                <a href="eventDetails.html" style="text-decoration:none; color:black;">
+                    <div class="row">
+                        <div class="col-sm-2"><div class="box"><image class="cropImage" src="static/img/1.jpg"></image></div></div>
+                        <div class="col-sm-6"><h5><b>Event 1</b></h5><b>Description:</b> Explore the artistry and innovation of culinary utensils at our exhibition! Discover the tools that shape gastronomic creativity, from ancient to modern, in an immersive showcase of craftsmanship and functionality. Join us for ...</div>
+                        <div class="col-sm-4"><b>Location:</b> 12 Albert Street<br><b>Date:</b> 1 Jan 2023 - 31 Dec 2023<br><b>Time:</b> 8am - 8pm<br><b>Status:</b> Open<br><b>Event Organiser:</b> ILoveFood</div>
+                    </div>
+                </a>
+                <a href="eventDetails.html" style="text-decoration:none; color:black;">
+                    <div class="row">
+                        <div class="col-sm-2"><div class="box"><image class="cropImage" src="static/img/2.jpg"></image></div></div>
+                        <div class="col-sm-6"><h5><b>Event 2</b></h5><b>Description:</b> Join us for a delectable culinary journey featuring diverse flavors, live music, and a vibrant atmosphere. Discover new tastes and savor every bite at our unforgettable food event!</div>
+                        <div class="col-sm-4"><b>Location:</b> 23 Bacon Street<br><b>Date:</b> 1 Jun 2023 - 4 Jun 2023<br><b>Time:</b> 6pm - 10pm<br><b>Status:</b> Sold Out<br><b>Event Organiser:</b> ILoveFood</div>
+                    </div>
+                </a>
+                <a href="eventDetails.html" style="text-decoration:none; color:black;">
+                    <div class="row">
+                        <div class="col-sm-2"><div class="box"><image class="cropImage" src="static/img/3.jpg"></image></div></div>
+                        <div class="col-sm-6"><h5><b>Event 3</b></h5><b>Description:</b> Indulge in the flavors of Japan at our food festival! Experience the exquisite taste of sushi, ramen, tempura, and more. Immerse yourself in Japanese culture with traditional performances and vibrant decor. Join us for a culinary ...</div>
+                        <div class="col-sm-4"><b>Location:</b> 34 Charlotte Street<br><b>Date:</b> 20 Nov 2023 - 3 Dec 2023<br><b>Time:</b> 6pm - 10pm<br><b>Status:</b> Open<br><b>Event Organiser:</b> ILoveFood</div>
+                    </div>
+                </a>
+                <a href="eventDetails.html" style="text-decoration:none; color:black;">
+                    <div class="row">
+                        <div class="col-sm-2"><div class="box"><image class="cropImage" src="static/img/4.jpg"></image></div></div>
+                        <div class="col-sm-6"><h5><b>Event 4</b></h5><b>Description:</b> Embark on a delicious journey to Italy in our hands-on food class! Learn the art of crafting authentic Italian dishes, from pasta-making to mastering sauces. Join our experienced chefs, savor the flavors, and take home new ...</div>
+                        <div class="col-sm-4"><b>Location:</b> 45 Delphine Street<br><b>Date:</b> 1 Jan 2023 - 31 Dec 2023<br><b>Time:</b> 9am - 11am<br><b>Status:</b> Open<br><b>Event Organiser:</b> ILoveFood</div>
+                    </div>
+                </a>
+            </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    </body>
-</html>
+        <br><br><br><br>
+    </div>
+{% endblock %}

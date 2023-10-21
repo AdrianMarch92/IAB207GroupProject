@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     # relation to call user.comments and comment.created_by
     comments = db.relationship('Comment', backref='user')
 
-class Events(db.Model):
+class Event(db.Model):
     __tablename__ = 'events'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))

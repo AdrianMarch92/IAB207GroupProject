@@ -1,10 +1,11 @@
 #from package import Class
-from flask import Flask 
+from flask import Flask, render_template 
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
 db=SQLAlchemy()
+app=Flask(__name__)
 
 #create a function that creates a web application
 # a web server will run this web application
@@ -43,10 +44,18 @@ def create_app():
     from . import views
     app.register_blueprint(views.bp)
 
+    from . import events
+    app.register_blueprint(events.bp)
+
     from . import auth
     app.register_blueprint(auth.bp)
     
     return app
+
+@app.errorhandler(404) 
+# inbuilt function which takes error as parameter 
+def not_found(e): 
+  return render_template("404.html")
 
 
 
