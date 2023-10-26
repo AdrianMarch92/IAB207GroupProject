@@ -1,47 +1,40 @@
 {% extends 'base.html' %}
 {% block content %}
-    <!--row for signup page-->
-    <div class="row p-3">
+<!-- your row for header and text -->
+<div class="row" style="margin-bottom: 1rem;">
     <div class="col-lg-5 col-md-2"></div>
     <div class="col-lg-2 col-md-8 col-sm-12">
-    <h5 class="font-weight-bold text-center" style="margin-top: 3rem;">Become A Member</h5>
-    <p class="text-center p-3">Create your member profile to book and create your own events!</p>
+        <form method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="mb-3">
+                <label for="user_name" class="form-label">User Name</label>
+                {{ form.user_name(class="form-control", id="registerEmail", placeholder="User Name") }}
+            </div>
+            <div class="mb-3">
+                <label for="email_id" class="form-label">Email address</label>
+                {{ form.email_id(class="form-control", placeholder="Email address") }}
+            </div>
+            <div class="mb-3">
+                <label for="contact_number" class="form-label">Phone Number</label>
+                {{ form.contact_number(class="form-control", placeholder="Phone number") }}
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                {{ form.address(class="form-control", placeholder="Address") }}
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                {{ form.password(class="form-control", placeholder="Password") }}
+            </div>
+            <div class="mb-3">
+                <label for="confirm" class="form-label">Confirm Password</label>
+                {{ form.confirm(class="form-control", placeholder="Confirm Password") }}
+            </div>
+            <div class="mb-3 text-center p-1" style="margin-top: 2rem;">
+                {{ form.submit(class="btn btn-primary", id="SignUp-button") }}
+            </div>
+        </form>
     </div>
     <div class="col-lg-5 col-md-2"></div>
-    </div>
-    <div class="row" style="margin-bottom: 1rem;">
-    <div class="col-lg-5 col-md-2"></div>
-    <div class="col-lg-2 col-md-8 col-sm-12">
-    <form>
-    <div class="mb-3">
-        <label for="RegisterEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="registerEmail" aria-describedby="emailHelp" placeholder="Email address">
-    </div>
-    <div class="mb-3">
-        <label for="registerPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="registerPassword" placeholder="Password">
-    </div>
-    <div class="mb-3">
-        <label for="RegisterFname1" class="form-label">First Name</label>
-        <input type="name" class="form-control" id="RegisterFname" placeholder="First Name">
-    </div>
-    <div class="mb-3">
-        <label for="registerLname1" class="form-label">Last Name</label>
-        <input type="name" class="form-control" id="registerLname" placeholder="Surname">
-    </div>
-    <div class="mb-3">
-        <label for="dateOfBirth1" class="form-label">Date of Birth</label>
-        <input type="date" class="form-control" id="dateOfBirth1" placeholder="Date of Birth">
-    </div>
-    <div class="mb-3">
-        <label for="regPhoneNo1" class="form-label">Phone Number</label>
-        <input type="text" class="form-control" id="regPhoneNo" placeholder="Phone number">
-    </div>
-    <div class="mb-3 text-center p-1" style="margin-top: 2rem;">
-    <button type="submit" class="btn btn-primary" id="SignUp-button">Sign Up!</button>
-    </div>
-    </form>
-    </div>
-    <div class="col-lg-5 col-md-2"></div>
-    </div>
+</div>
 {% endblock %}

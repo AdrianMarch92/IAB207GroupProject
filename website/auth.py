@@ -11,7 +11,7 @@ bp = Blueprint('auth', __name__)
 
 # this is a hint for a login function
 @bp.route('/login', methods=['GET', 'POST'])
-def authenticate(): #view function
+def login():
     print('In Login View function')
     login_form = LoginForm()
     error=None
@@ -27,8 +27,8 @@ def authenticate(): #view function
             login_user(user)
             nextp = request.args.get('next') #this gives the url from where the login page was accessed
             print(nextp)
-            if next is None or not nextp.startswith('/'):
-                return redirect(url_for('index'))
+            if nextp is None or not nextp.startswith('/'):
+                return redirect(url_for('main.index'))
             return redirect(nextp)
         else:
             flash(error)
