@@ -4,16 +4,16 @@
         <meta charset="utf-8">
         <meta content="home page">
         <title>Cuisine Connect</title>
-        <link rel="stylesheet" href="static/style/style.css">
+        <link rel="stylesheet" href="{{url_for('static', filename='style/style.css')}}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">        
     </head>
     <body class="bGColor">
         <nav class="navbar sticky-top navbar-expand-sm bg-light navbar-light justify-content-center">
             <div class="container-fluid">
                     <ul class="navbar-nav">
-                        <li><a class="navbar-brand" href = "index.html"><img src="{{url_for('static', filename='img/logo.png')}}" style="width:240px;height:90px"></a></li>
-                        <li class="nav-item" ><a style="font-size: 150%; padding-top: 30px;" class="active nav-link" href = "index.html"><b>Home</b></a></li>
-                        <li class="nav-item" ><a style="font-size: 150%; padding-top: 30px;" class="nav-link" href = "createEvent.html"><b>Create an Event</b></a></li>
+                        <li><a class="navbar-brand" href = "{{ url_for('main.index') }}"><img src="{{url_for('static', filename='img/logo.png')}}" style="width:240px;height:90px"></a></li>
+                        <li class="nav-item" ><a style="font-size: 150%; padding-top: 30px;" class="nav-link" href = "{{ url_for('main.index') }}"><b>Home</b></a></li>
+                        <li class="nav-item" ><a style="font-size: 150%; padding-top: 30px;" class="nav-link" href = "{{ url_for('event.create') }}"><b>Create an Event</b></a></li>
                     </ul>
                     <ul class = "navbar-nav navbar-right">
                         {% if current_user.is_authenticated %}
@@ -42,7 +42,7 @@
         <div class="container-fluid text-center text-md-left">
             <div class="row text-center text-md-left">
                 <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Urban kick</h5>
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Cuisine Connect</h5>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -96,7 +96,7 @@
                         <a href="#" class="text-white" style="text-decoration: none;">Facebook</a>
                     </p>
                     <p>
-                        <a href="#" class="text-white" style="text-decoration: none;">Instgram</a>
+                        <a href="#" class="text-white" style="text-decoration: none;">Instagram</a>
                     </p>
                     <p>
                         <a href="#" class="text-white" style="text-decoration: none;">LinkedIn</a>
@@ -110,7 +110,7 @@
                 <div class="col-md-4 col-lg-4">
                     <p>Copyright @2023 all rights reserved by:
                         <a href="#" style="text-decoration: none;"></a>
-                        <strong class="text-warning">Urban Kick</strong>
+                        <strong class="text-warning">Cuisine Connect</strong>
                     </p>
                 </div>
             </div>
