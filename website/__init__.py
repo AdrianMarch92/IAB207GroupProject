@@ -17,6 +17,13 @@ def create_app():
     app.secret_key='somesecretgoeshere'
     #set the app configuration data 
     app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///cuisine_connect_db.sqlite'
+
+    # Configuration
+    UPLOAD_FOLDER = 'static/uploads'
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+    os.makedirs(os.path.join(os.getcwd(), UPLOAD_FOLDER), exist_ok=True)
+
     #initialise db with flask app
     db.init_app(app)
 
@@ -52,13 +59,6 @@ def create_app():
     app.register_blueprint(auth.bp)
     
     
-
-    # Configuration
-    UPLOAD_FOLDER = 'static/uploads'
-    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-    os.makedirs(os.path.join(os.getcwd(), UPLOAD_FOLDER), exist_ok=True)
-
     @app.errorhandler(404) 
     # inbuilt function which takes error as parameter 
     def not_found(e): 

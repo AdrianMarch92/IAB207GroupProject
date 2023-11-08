@@ -16,10 +16,10 @@ def allowed_file(filename):
 
 def check_upload_file():
     # Check if the post request has the file part
-    if 'upload' not in request.files:
+    if 'image' not in request.files:
         flash('No file part')
         return None
-    file = request.files['upload'] 
+    file = request.files['image']
 
     # If the user does not select a file, the browser submits an
     # empty file without a filename.
@@ -53,6 +53,7 @@ def create():
     form = EventForm()
     if form.validate_on_submit():
         db_file_path = check_upload_file()
+        print(db_file_path)
 
         # Instantiate an Event object with all the form fields
         event = Event(
