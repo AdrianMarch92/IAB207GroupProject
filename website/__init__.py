@@ -3,6 +3,7 @@ from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+import os
 
 db=SQLAlchemy()
 app=Flask(__name__)
@@ -50,12 +51,18 @@ def create_app():
     from . import auth
     app.register_blueprint(auth.bp)
     
+    
+
+    # Configuration
+    UPLOAD_FOLDER = 'static/uploads'
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+    os.makedirs(os.path.join(os.getcwd(), UPLOAD_FOLDER), exist_ok=True)
+
+    @app.errorhandler(404) 
+    # inbuilt function which takes error as parameter 
+    def not_found(e): 
+        return render_template("404.html")
+
     return app
-
-@app.errorhandler(404) 
-# inbuilt function which takes error as parameter 
-def not_found(e): 
-  return render_template("404.html")
-
-
 

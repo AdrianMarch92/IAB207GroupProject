@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, IntegerField
+from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, IntegerField, DateField, TimeField, DecimalField
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 
@@ -26,14 +26,24 @@ class RegisterForm(FlaskForm):
     submit = SubmitField("Register")
 
 class EventForm(FlaskForm):
-  name = StringField('Country', validators=[InputRequired()])
-  description = TextAreaField('Description', 
-            validators=[InputRequired()])
-  image = FileField('Destination Image', validators=[
-    FileRequired(message='Image cannot be empty'),
-    FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
-  currency = StringField('Currency', validators=[InputRequired()])
-  submit = SubmitField("Create")
+    name = StringField('Event Name', validators=[InputRequired()])
+    location = StringField('Location', validators=[InputRequired()])
+    start_date = DateField('Start Date', validators=[InputRequired()], format='%Y-%m-%d')
+    end_date = DateField('End Date', validators=[InputRequired()], format='%Y-%m-%d')
+    start_time = TimeField('Start Time', validators=[InputRequired()])
+    end_time = TimeField('End Time', validators=[InputRequired()])
+    ga_price = DecimalField('General Admission Price', validators=[InputRequired()])
+    ga_availability = IntegerField('General Admission Availability', validators=[InputRequired()])
+    concession_price = DecimalField('Concession Price', validators=[InputRequired()])
+    concession_availability = IntegerField('Concession Availability', validators=[InputRequired()])
+    vip_price = DecimalField('VIP Price', validators=[InputRequired()])
+    vip_availability = IntegerField('VIP Availability', validators=[InputRequired()])
+    description = TextAreaField('Description', validators=[InputRequired()])
+    image = FileField('Event Image', validators=[
+        FileRequired(message='Image cannot be empty'),
+        FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
+    more_info = TextAreaField('More About The Event')
+    post_event = SubmitField("Post Event")
 
 class CommentForm(FlaskForm):
     text = TextAreaField('Comment', [InputRequired()])

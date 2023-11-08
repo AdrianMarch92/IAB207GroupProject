@@ -18,12 +18,24 @@ class User(db.Model, UserMixin):
 
 class Event(db.Model):
     __tablename__ = 'events'
+    
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
-    description = db.Column(db.String(200))
-    image = db.Column(db.String(400))
-    # ... Create the Comments db.relationship
-	# relation to call destination.comments and comment.destination
+    name = db.Column(db.String(80), nullable=False)
+    location = db.Column(db.String(400), nullable=False)
+    start_date = db.Column(db.Date, nullable=False)
+    end_date = db.Column(db.Date, nullable=False)
+    start_time = db.Column(db.Time, nullable=False)
+    end_time = db.Column(db.Time, nullable=False)
+    ga_price = db.Column(db.Numeric, nullable=False)
+    ga_availability = db.Column(db.Integer, nullable=False)
+    concession_price = db.Column(db.Numeric, nullable=False)
+    concession_availability = db.Column(db.Integer, nullable=False)
+    vip_price = db.Column(db.Numeric, nullable=False)
+    vip_availability = db.Column(db.Integer, nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    image = db.Column(db.String(400), nullable=True)
+    more_info = db.Column(db.Text, nullable=True) 
+    status = db.Column(db.String(80), nullable=True)  
     comments = db.relationship('Comment', backref='event')
 
 class Bookings(db.Model):

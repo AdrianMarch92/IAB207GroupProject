@@ -7,98 +7,111 @@
         <div class="heading">
             <h1>Create An Event!</h1><br><br>
         </div>
-        <div class="container"><div class="row">
-            <div class="col-sm-8"><div class="formLayout"><div class="container">
-                <h4>Input Event Details Here</h4>
-                <form>
-                    <label for="inputEventName"><b>Event Name:</b></label>
-                    <input class="form-control" id="inputEventName" type="text"><br>
-                    <label for="inputLocation"><b>Location:</b></label>
-                    <input class="form-control" id="inputLocation" type="text"><br>
-                    <b>Date:</b><br>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label for="inputDate1">From</label>
-                            <input class="form-control" id="inputDate1" type="date">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="inputDate2">To</label>
-                            <input class="form-control" id="inputDate2" type="date">
-                        </div>
-                    </div><br>
-                    <b>Time:</b><br>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label for="inputTime1">From</label>
-                            <input class="form-control" id="inputTime1" type="time">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="inputTime2">To</label>
-                            <input class="form-control" id="inputTime2" type="time">
-                        </div>
-                    </div><br>
-                    <b>Tickets:</b><br>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label for="inputGA">General Admission</label>
-                            <div class="input-group">
-                                <div class="input-group-text">$</div>
-                                <input class="form-control" id="inputGA" type="number" placeholder="0.00" step="any" />
-                                <div class="input-group-text">AUD</div>
+        <form method="post" enctype="multipart/form-data" class="container">
+            {{ form.hidden_tag() }}
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="formLayout">
+                        <div class="container">
+                            <h4>Input Event Details Here</h4>
+                            
+                            {{ form.name.label(class="form-label") }}
+                            {{ form.name(class="form-control") }}<br>
+                            
+                            {{ form.location.label(class="form-label") }}
+                            {{ form.location(class="form-control") }}<br>
+                            
+                            <b>Date:</b><br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    {{ form.start_date.label(class="form-label") }}
+                                    {{ form.start_date(class="form-control") }}
+                                </div>
+                                <div class="col-sm-6">
+                                    {{ form.end_date.label(class="form-label") }}
+                                    {{ form.end_date(class="form-control") }}
+                                </div>
+                            </div><br>
+                            
+                            <b>Time:</b><br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    {{ form.start_time.label(class="form-label") }}
+                                    {{ form.start_time(class="form-control") }}
+                                </div>
+                                <div class="col-sm-6">
+                                    {{ form.end_time.label(class="form-label") }}
+                                    {{ form.end_time(class="form-control") }}
+                                </div>
+                            </div><br>
+                            
+                            <b>Tickets:</b><br>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    {{ form.ga_price.label(class="form-label") }}
+                                    <div class="input-group">
+                                        <div class="input-group-text">$</div>
+                                        {{ form.ga_price(class="form-control") }}
+                                        <div class="input-group-text">AUD</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    {{ form.ga_availability.label(class="form-label") }}
+                                    {{ form.ga_availability(class="form-control") }}
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <label for="inputGAAva">Availability</label>
-                            <input class="form-control" id="inputGAAva" type="number" value="0">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    {{ form.concession_price.label(class="form-label") }}
+                                    <div class="input-group">
+                                        <div class="input-group-text">$</div>
+                                        {{ form.concession_price(class="form-control") }}
+                                        <div class="input-group-text">AUD</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    {{ form.concession_availability.label(class="form-label") }}
+                                    {{ form.concession_availability(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    {{ form.vip_price.label(class="form-label") }}
+                                    <div class="input-group">
+                                        <div class="input-group-text">$</div>
+                                        {{ form.vip_price(class="form-control") }}
+                                        <div class="input-group-text">AUD</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    {{ form.vip_availability.label(class="form-label") }}
+                                    {{ form.vip_availability(class="form-control") }}
+                                </div>
+                            </div><br>
+                            
+                            <b>General Description:</b> (maximum 250 characters)<br>
+                            {{ form.description(class="inputBox", maxlength="250") }}<br>
+                            
+                            <b>More About The Event:</b><br>
+                            {{ form.more_info(class="inputBox") }}<br><br>
+                            
+                            {{ form.post_event(class="btn btn-outline-success") }}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label for="inputCo">Concession</label>
-                            <div class="input-group">
-                                <div class="input-group-text">$</div>
-                                <input class="form-control" id="inputCo" type="number" placeholder="0.00" step="any" />
-                                <div class="input-group-text">AUD</div>
-                            </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="formLayout">
+                        <div class="container">
+                            <h4>Upload Your Videos and Images Here</h4><br>
+                            {{ form.image.label(class="form-label") }}
+                            {{ form.image(class="form-control", multiple=true) }}<br>
+                            
                         </div>
-                        <div class="col-sm-4">
-                            <label for="inputCoAva">Availability</label>
-                            <input class="form-control" id="inputCoAva" type="number" value="0">
-                        </div>
+                        
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label for="inputVIP">VIP</label>
-                            <div class="input-group">
-                                <div class="input-group-text">$</div>
-                                <input class="form-control" id="inputVIP" type="number" placeholder="0.00" step="any" />
-                                <div class="input-group-text">AUD</div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <label for="inputVIPAva">Availability</label>
-                            <input class="form-control" id="inputVIPAva" type="number" value="0">
-                        </div>
-                    </div><br>
-                    <b>General Description:</b> maximum---250 cahracters<br>
-                    <div class="overflow-auto">
-                        <textarea class="inputBox" id="InputGeneralDes" maxlength="250"></textarea>
-                    </div><br>
-                    <b>More About The Event:</b><br>
-                    <div class="overflow-auto">
-                        <textarea class="inputBox" id="InputMoreInfo" placeholder="eg. Ticket Informations, Event Guidelines, Terms and Conditions, etc."></textarea>
-                    </div><br><br>
-                    <button class="btn btn-outline-success">Post Event</button>
-                </form>
-            </div></div></div>
-            <div class="col-sm-4"><div class="formLayout"><div class="container">
-                <h4>Upload Your Videos and Images Here</h4><br>
-                <form>
-                    <input class="form-control" type="file" accept="video/*,image/*" multiple><br>
-                    <input class="btn btn-outline-dark" type="submit" value="Upload">
-                </form>           
-            </div></div></div>
-        </div></div>
+                </div>
+            </div>
+        </form>
     </div>
     <br><br><br><br>
 {% endblock %}
