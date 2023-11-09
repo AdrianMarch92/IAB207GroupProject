@@ -72,6 +72,7 @@ def create():
             description=form.description.data,
             image=db_file_path,
             status=form.status.data,
+            category=form.category.data,
             # Assuming you have these fields in your EventForm and Event model
             more_info=form.more_info.data if hasattr(form, 'more_info') else None,
         )

@@ -89,11 +89,18 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12"> <!-- Adjust the column size as needed -->
+                                <div class="col-sm-12">
                                     <div class="formLayout">
                                         <h4>Event Status</h4>
                                         {{ form.status.label(class="form-label") }}
                                         {{ form.status(class="form-control") }}<br>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12"> 
+                                    <div class="formLayout">
+                                        <h4>Event Category</h4>
+                                        {{ form.category.label(class="form-label") }}
+                                        {{ form.category(class="form-control") }}<br>
                                     </div>
                                 </div>
                             </div><br>

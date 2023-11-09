@@ -35,7 +35,8 @@ class Event(db.Model):
     description = db.Column(db.Text, nullable=False)
     image = db.Column(db.String(400), nullable=True)
     more_info = db.Column(db.Text, nullable=True) 
-    status = db.Column(db.String(80), nullable=True)  
+    status = db.Column(db.String(80), nullable=True)
+    category = db.Column(db.String(80), nullable=True) 
     comments = db.relationship('Comment', backref='event')
 
 class Bookings(db.Model):

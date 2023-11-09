@@ -49,6 +49,11 @@ class EventForm(FlaskForm):
         choices=[('open', 'Open'), ('sold_out', 'Sold Out'), ('closed', 'Closed')],
         validators=[DataRequired()]
     )
+    category = SelectField(
+        'Category',
+        choices=[('asian', 'Asian'), ('indian', 'Indian'), ('italian', 'Italian'), ('greek', 'Greek'), ('european', 'European')],
+        validators=[DataRequired()]
+    )
 
 class CommentForm(FlaskForm):
     text = TextAreaField('Comment', [InputRequired()])
