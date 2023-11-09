@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, IntegerField, DateField, TimeField, DecimalField
-from wtforms.validators import InputRequired, Length, Email, EqualTo
+from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, IntegerField, DateField, TimeField, DecimalField, SelectField
+from wtforms.validators import InputRequired, Length, Email, EqualTo, DataRequired
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 
 ALLOWED_FILE = {'PNG','JPG','png','jpg'}
@@ -44,6 +44,11 @@ class EventForm(FlaskForm):
         FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
     more_info = TextAreaField('More About The Event')
     post_event = SubmitField("Post Event")
+    status = SelectField(
+        'Status',
+        choices=[('open', 'Open'), ('sold_out', 'Sold Out'), ('closed', 'Closed')],
+        validators=[DataRequired()]
+    )
 
 class CommentForm(FlaskForm):
     text = TextAreaField('Comment', [InputRequired()])
