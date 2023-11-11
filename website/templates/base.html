@@ -24,8 +24,9 @@
                         <li class="nav-item" ><a style="font-size: 130%; padding-top: 30px;" class="nav-link" href = "{{ url_for('auth.login') }}"><b>Log in</b></a></li>
                         <li class="nav-item" ><a style="font-size: 130%; padding-top: 30px;" class="nav-link" href = "{{ url_for('auth.register') }}"><b>Sign up</b></a></li>
                         {% endif %}
-                        
-                        <li class="nav-item"><a style="font-size: 130%; padding-right: 30px; padding-top: 30px;" class="nav-link" href = "profile.html"><b>Profile</b></a></li>
+                        {% if current_user.is_authenticated %}
+                        <li class="nav-item"><a style="font-size: 130%; padding-right: 30px; padding-top: 30px;" class="nav-link" href = "{{ url_for('event.profile') }}"><b>Profile</b></a></li>
+                        {% endif %}
                     </ul>
             </div>
         </nav>

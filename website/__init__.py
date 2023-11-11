@@ -1,6 +1,6 @@
 #from package import Class
 from flask import Flask, render_template 
-from flask_bootstrap import Bootstrap5
+from flask_bootstrap import Bootstrap4
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 import os
@@ -19,7 +19,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///cuisine_connect_db.sqlite'
 
     # Configuration
-    UPLOAD_FOLDER = 'static/uploads'
+    UPLOAD_FOLDER = 'website/static/uploads'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
     os.makedirs(os.path.join(os.getcwd(), UPLOAD_FOLDER), exist_ok=True)
@@ -27,7 +27,7 @@ def create_app():
     #initialise db with flask app
     db.init_app(app)
 
-    bootstrap = Bootstrap5(app)
+    bootstrap = Bootstrap4(app)
     
     #initialize the login manager
     login_manager = LoginManager()

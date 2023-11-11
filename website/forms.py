@@ -42,7 +42,8 @@ class EventForm(FlaskForm):
     image = FileField('Event Image', validators=[
         FileRequired(message='Image cannot be empty'),
         FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
-    more_info = TextAreaField('More About The Event')
+    event_guidelines = TextAreaField('Event Guidelines')
+    terms_conditions = TextAreaField('Terms and Conditions')
     post_event = SubmitField("Post Event")
     status = SelectField(
         'Status',
@@ -54,7 +55,9 @@ class EventForm(FlaskForm):
         choices=[('asian', 'Asian'), ('indian', 'Indian'), ('italian', 'Italian'), ('greek', 'Greek'), ('european', 'European')],
         validators=[DataRequired()]
     )
+    submit = SubmitField('Update Event')
+
 
 class CommentForm(FlaskForm):
     text = TextAreaField('Comment', [InputRequired()])
-    submit = SubmitField('Create')
+    submit = SubmitField('Post')

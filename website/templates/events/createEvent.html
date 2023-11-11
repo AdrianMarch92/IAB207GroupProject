@@ -108,8 +108,11 @@
                             <b>General Description:</b> (maximum 250 characters)<br>
                             {{ form.description(class="inputBox", maxlength="250") }}<br>
                             
-                            <b>More About The Event:</b><br>
-                            {{ form.more_info(class="inputBox") }}<br><br>
+                            <b>Event Guidelines:</b> (maximum 250 characters)<br>
+                            {{ form.event_guidelines(class="inputBox") }}<br><br>
+
+                            <b>Terms and Conditions:</b> (maximum 250 characters)<br>
+                            {{ form.terms_conditions(class="inputBox") }}<br><br>
                             
                             {{ form.post_event(class="btn btn-outline-success") }}
                         </div>

@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block header %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+{% endblock %}
+{% block content %}
+<div>
+    <div class="heading">
+        <h1>Update Event</h1><br><br>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for message in messages %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <form method="post" action="{{ url_for('event.update_event', id=event.id) }}" enctype="multipart/form-data" class="container">
+        {{ form.hidden_tag() }}
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="formLayout">
+                    <div class="container">
+                        <h4>Update Event Details</h4>
+                        {{ form.name.label(class="form-label") }}
+                        {{ form.name(class="form-control") }}<br>
+                        
+                        {{ form.location.label(class="form-label") }}
+                        {{ form.location(class="form-control") }}<br>
+                        
+                        <b>Date:</b><br>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{ form.start_date.label(class="form-label") }}
+                                {{ form.start_date(class="form-control") }}
+                            </div>
+                            <div class="col-sm-6">
+                                {{ form.end_date.label(class="form-label") }}
+                                {{ form.end_date(class="form-control") }}
+                            </div>
+                        </div><br>
+                        
+                        <b>Time:</b><br>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{ form.start_time.label(class="form-label") }}
+                                {{ form.start_time(class="form-control") }}
+                            </div>
+                            <div class="col-sm-6">
+                                {{ form.end_time.label(class="form-label") }}
+                                {{ form.end_time(class="form-control") }}
+                            </div>
+                        </div><br>
+                        
+                        <b>Tickets:</b><br>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                {{ form.ga_price.label(class="form-label") }}
+                                <div class="input-group">
+                                    <div class="input-group-text">$</div>
+                                    {{ form.ga_price(class="form-control") }}
+                                    <div class="input-group-text">AUD</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ form.ga_availability.label(class="form-label") }}
+                                {{ form.ga_availability(class="form-control") }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                {{ form.concession_price.label(class="form-label") }}
+                                <div class="input-group">
+                                    <div class="input-group-text">$</div>
+                                    {{ form.concession_price(class="form-control") }}
+                                    <div class="input-group-text">AUD</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ form.concession_availability.label(class="form-label") }}
+                                {{ form.concession_availability(class="form-control") }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                {{ form.vip_price.label(class="form-label") }}
+                                <div class="input-group">
+                                    <div class="input-group-text">$</div>
+                                    {{ form.vip_price(class="form-control") }}
+                                    <div class="input-group-text">AUD</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ form.vip_availability.label(class="form-label") }}
+                                {{ form.vip_availability(class="form-control") }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12"> 
+                                <div class="formLayout">
+                                    <h4>Event Category</h4>
+                                    {{ form.category.label(class="form-label") }}
+                                    {{ form.category(class="form-control") }}<br>
+                                </div>
+                            </div>
+                        </div><br>
+                        
+                        <b>General Description:</b> (maximum 250 characters)<br>
+                        {{ form.description(class="inputBox", maxlength="250") }}<br>
+                        
+                        <b>More About The Event:</b><br>
+                        {{ form.more_info(class="inputBox") }}<br><br>
+                        
+                        {{ form.submit(class="btn btn-outline-success", value="Update Event") }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="formLayout">
+                    <div class="container">
+                        <h4>Upload New Event Image</h4><br>
+                        {{ form.image.label(class="form-label") }}
+                        {{ form.image(class="form-control", multiple=true) }}<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<br><br><br><br>
+{% endblock %}

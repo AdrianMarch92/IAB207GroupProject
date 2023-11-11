@@ -34,10 +34,14 @@ class Event(db.Model):
     vip_availability = db.Column(db.Integer, nullable=False)
     description = db.Column(db.Text, nullable=False)
     image = db.Column(db.String(400), nullable=True)
-    more_info = db.Column(db.Text, nullable=True) 
+    event_guidelines = db.Column(db.Text, nullable=True)
+    terms_conditions = db.Column(db.Text, nullable=True)  
     status = db.Column(db.String(80), nullable=True)
     category = db.Column(db.String(80), nullable=True) 
     comments = db.relationship('Comment', backref='event')
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    user = db.relationship('User', backref=db.backref('events', lazy=True))
 
 class Bookings(db.Model):
     __tablename__ = 'bookings'
@@ -47,6 +51,10 @@ class Bookings(db.Model):
     image = db.Column(db.String(400))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
+    ga_quantity = db.Column(db.Integer, default=0)
+    concession_quantity = db.Column(db.Integer, default=0)
+    vip_quantity = db.Column(db.Integer, default=0)
+    booking_time = db.Column(db.DateTime, default=datetime.utcnow)
 
 class Comment(db.Model):
     __tablename__ = 'comments'
