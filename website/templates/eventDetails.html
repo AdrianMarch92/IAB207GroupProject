@@ -3,6 +3,7 @@
 {% block header %}
 <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
 {% endblock %}
+
 {% block content %}
 <div>
     <div class="heading">
@@ -13,7 +14,6 @@
             <div class="col-sm-3">
                 <div class="box">
                     <img class="cropImage" src="{{ url_for('static', filename=event.image.split('static/')[1].replace('\\', '/')) }}" alt="Event Image">
-
                 </div>
                 <br><b>Location:</b> {{ event.location }}
                 <br><b>Date:</b> {{ event.start_date.strftime('%d %b %Y') }} - {{ event.end_date.strftime('%d %b %Y') }}
@@ -23,27 +23,23 @@
                 <br><br><h4>Comments</h4>
                 <div class="overflow-auto reviewsColor">
                     <div class="reviews">
-                        <!-- Loop through event comments -->
                         {% for comment in event.comments %}
-                            <div>
-                                <b>{{ comment.user.name }}:</b><br>
-                                {{ comment.text }}
-                                <div class="text-muted">posted on: {{ comment.created_at.strftime('%d %b %Y') }}</div>
-                            </div>
-                            <hr class="hr hr-blurry" />
+                        <div>
+                            <b>{{ comment.user.name }}:</b><br>
+                            {{ comment.text }}
+                            <div class="text-muted">posted on: {{ comment.created_at.strftime('%d %b %Y') }}</div>
+                        </div>
+                        <hr class="hr hr-blurry" />
                         {% endfor %}
                     </div>
                 </div>
-                <!-- Comment input field -->
                 <form method="post" action="{{ url_for('event.post_comment', event_id=event.id) }}">
                     {{ form.hidden_tag() }}
-
                     <div class="input-group mb-3"> 
                         {{ form.text(class="form-control") }}
                         <button class="btn btn-outline-success" type="submit">Post</button>
                     </div>
                 </form>
-
             </div>
             <div class="col-sm-5">
                 <h4>Description:</h4>
@@ -52,12 +48,10 @@
                 <br><b>Tickets Details:</b>
                 <br>- General Admission: ${{ "%.2f"|format(event.ga_price) }} AUD
                 <br>- Concession - ${{ "%.2f"|format(event.concession_price) }} AUD
-                <br>-  VIP Pass (Includes exclusive access and chef meet-and-greet): ${{ "%.2f"|format(event.vip_price) }} AUD
+                <br>- VIP Pass (Includes exclusive access and chef meet-and-greet): ${{ "%.2f"|format(event.vip_price) }} AUD
                 <br><br><b>Event Guidelines:</b>
-                <!-- Your event guidelines here -->
                 {{ event.event_guidelines }}
                 <br><br><b>Terms and Conditions:</b>
-                <!-- Your event terms and conditions here -->
                 {{ event.terms_conditions }}
             </div>
             <div class="col-sm-4">
@@ -68,45 +62,54 @@
                             <br><b>General Admission - ${{ "%.2f"|format(event.ga_price) }} AUD</b><br>
                             <div class="input-group">
                                 <div class="input-group-text">Quantity:</div>
-                                <select class="form-select" name="ga_quantity" id="GAquantity">
-                                    {% for i in range(11) %}
-                                        <option value="{{ i }}">{{ i }}</option>
-                                    {% endfor %}
-                                </select>
+                                <input type="number" name="ga_quantity" id="GAquantity" class="form-control" min="0" value="0">
                             </div><br>
-
                             <br><b>Concession - ${{ "%.2f"|format(event.concession_price) }} AUD</b><br>
                             <div class="input-group">
                                 <div class="input-group-text">Quantity:</div>
-                                <select class="form-select" name="concession_quantity" id="ConQuantity">
-                                    {% for i in range(11) %}
-                                        <option value="{{ i }}">{{ i }}</option>
-                                    {% endfor %}
-                                </select>
+                                <input type="number" name="concession_quantity" id="concessionquantity" class="form-control" min="0" value="0">
                             </div><br>
-            
                             <br><b>VIP - ${{ "%.2f"|format(event.vip_price) }} AUD</b><br>
                             <div class="input-group">
                                 <div class="input-group-text">Quantity:</div>
-                                <select class="form-select" name="vip_quantity" id="VIPquantity">
-                                    {% for i in range(11) %}
-                                        <option value="{{ i }}">{{ i }}</option>
-                                    {% endfor %}
-                                </select>
+                                <input type="number" name="vip_quantity" id="VIPquantity" class="form-control" min="0" value="0">
                             </div><br>
+                            <div id="totalPrice">Total Cost: $0.00 AUD</div><br>
                             <input type="hidden" name="event_id" value="{{ event.id }}">
-                            <button class="btn btn-outline-success" type="submit">Book Event
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                                </svg>
-                            </button>
+                            <button class="btn btn-outline-success" type="submit">Book Event</button>
                         </form>
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
 </div>
+
+<script>
+    function updateTotal() {
+        var gaPrice = {{ event.ga_price }};
+        var conPrice = {{ event.concession_price }};
+        var vipPrice = {{ event.vip_price }};
+
+        var gaQuantity = parseInt(document.getElementById('GAquantity').value) || 0;
+        var conQuantity = parseInt(document.getElementById('concessionquantity').value) || 0;
+        var vipQuantity = parseInt(document.getElementById('VIPquantity').value) || 0;
+
+        var totalPrice = (gaQuantity * gaPrice) + (conQuantity * conPrice) + (vipQuantity * vipPrice);
+
+        document.getElementById('totalPrice').innerText = 'Total Cost: $' + totalPrice.toFixed(2) + ' AUD';
+    }
+
+    document.getElementById('GAquantity').addEventListener('input', updateTotal);
+    document.getElementById('concessionquantity').addEventListener('input', updateTotal);
+    document.getElementById('VIPquantity').addEventListener('input', updateTotal);
+
+    window.onload = updateTotal;
+</script>
+
+
+
+
+
 <br><br><br><br>
 {% endblock %}

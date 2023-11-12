@@ -30,41 +30,37 @@
                         <div class="container">
                             <table style="width:100%">
                                 <tr>
-                                  <th>Event Name</th>
-                                  <th>Order ID</th>
-                                  <th>Booked Date</th>
-                                  <th>Booked Time</th>
+                                    <th>Event Name</th>
+                                    <th>Booked Date</th>
+                                    <th>Booked Time</th>
                                 </tr>
-                                <tr>
-                                  <td>
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-sm-4"><a href="eventDetails.html" style="text-decoration:none; color:black;"><div class="boxList"><image class="cropImageList" src="static/img/1.jpg"></image></div></a></div>
-                                            <div class="col-sm-8 center"><b>Event 1</b></div>
-                                        </div>
-                                    </div>
-                                </td>
-                                  <td>1234567890abc</td>
-                                  <td>4 Jan 2023</td>
-                                  <td>2pm - 4pm</td>
-                                </tr>
+                                {% for booking in booked_events %}
                                 <tr>
                                     <td>
-                                      <div class="container">
-                                          <div class="row">
-                                              <div class="col-sm-4"><a href="eventDetails.html" style="text-decoration:none; color:black;"><div class="boxList"><image class="cropImageList" src="static/img/2.jpg"></image></div></a></div>
-                                              <div class="col-sm-8 center"><b>Event 2</b></div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                    <td>2345678901bcd</td>
-                                    <td>2 Jun 2023</td>
-                                    <td>6pm - 10pm</td>
-                                  </tr>
-                              </table>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    {% if booking.image %}
+                                                    {% set image_url = booking.image.replace('website/static/', '').replace('\\', '/') %}
+                                                    <img src="{{ url_for('static', filename=image_url) }}" alt="Event Image" style="max-width: 100px; max-height: 100px;">
+                                                    {% else %}
+                                                    <!-- Display a placeholder or text if no image is available -->
+                                                        No Image Available
+                                                    {% endif %}
+                                                </div>
+                                                <div class="col-sm-8 center"><b>{{ booking.name }}</b></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{ booking.booking_time.strftime('%d %b %Y') }}</td>
+                                    <td>{{ booking.booking_time.strftime('%I:%M %p') }}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
                         </div>
                     </div>
                 </div>
+                
                 <div class="collapse show" id="createdEvents">
                     <br><br>
                     <h4 class="heading">Your Created Events</h4><br>

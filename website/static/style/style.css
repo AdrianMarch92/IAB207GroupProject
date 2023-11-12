@@ -97,3 +97,7 @@ input::-webkit-inner-spin-button {
 .center{
     padding-top: 25px;
 }
+.searchBarButton {
+    width: auto; /* or a specific width like 150px */
+    height: auto; /* or a specific height like 40px */
+}

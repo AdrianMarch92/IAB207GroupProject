@@ -43,6 +43,21 @@ class Event(db.Model):
 
     user = db.relationship('User', backref=db.backref('events', lazy=True))
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "image": self.image,
+            "location": self.location,
+            "start_date": self.start_date.strftime('%Y-%m-%d'),
+            "end_date": self.end_date.strftime('%Y-%m-%d'),
+            "start_time": self.start_time.strftime('%H:%M:%S'),
+            "end_time": self.end_time.strftime('%H:%M:%S'),
+            "category": self.category
+            # Add other fields as needed
+        }
+
 class Bookings(db.Model):
     __tablename__ = 'bookings'
     id = db.Column(db.Integer, primary_key=True)

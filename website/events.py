@@ -1,10 +1,9 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
 from .models import Event, Comment, Bookings
 from .forms import EventForm, CommentForm
-from . import db, app
+from . import db
 import os
 from werkzeug.utils import secure_filename
-#additional import:
 from flask_login import login_required, current_user
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'mp4'}
@@ -41,7 +40,7 @@ def save_image(file):
         filename = secure_filename(file.filename)
         file_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
-        return file_path  # Return the full file path
+        return file_path 
     return None
 
 
@@ -49,6 +48,7 @@ bp = Blueprint('event', __name__, url_prefix='/events')
 
 @bp.route('/event/<int:id>')
 def event_details(id):
+    print(f"Event ID: {id}")
     event = Event.query.get_or_404(id)
     comment_form = CommentForm()
     return render_template('eventDetails.html', event=event, form=comment_form)
@@ -127,7 +127,7 @@ def post_comment(event_id):
 def profile():
     # Fetch events created by the current user
     created_events = Event.query.filter_by(user_id=current_user.id).all()
-
+    booked_events = Bookings.query.filter_by(user_id=current_user.id).all()
     # Fetch events booked by the current user
     # This assumes you have a Booking model that links users to events they've booked
     booked_events = Bookings.query.filter_by(user_id=current_user.id).all()
@@ -186,11 +186,13 @@ def update_event(id):
 @bp.route('/book_event/<int:id>', methods=['POST'])
 @login_required
 def book_event(id):
+    total_cost = 0
     event = Event.query.get_or_404(id)
-    ga_quantity = request.form.get('ga_quantity', type=int)
-    concession_quantity = request.form.get('concession_quantity', type=int)
-    vip_quantity = request.form.get('vip_quantity', type=int)
+    ga_quantity = request.form.get('ga_quantity', type=int, default=0)
+    concession_quantity = request.form.get('concession_quantity', type=int, default=0)
+    vip_quantity = request.form.get('vip_quantity', type=int, default=0)
 
+    total_cost = ga_quantity * event.ga_price + concession_quantity * event.concession_price + vip_quantity * event.vip_price
     # Create a new booking record
     booking = Bookings(
         name=event.name,
