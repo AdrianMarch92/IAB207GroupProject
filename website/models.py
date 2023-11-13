@@ -17,7 +17,6 @@ class User(db.Model, UserMixin):
 
 class Event(db.Model):
     __tablename__ = 'events'
-    
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     location = db.Column(db.String(400), nullable=False)
@@ -34,13 +33,50 @@ class Event(db.Model):
     description = db.Column(db.Text, nullable=False)
     image = db.Column(db.String(400), nullable=True)
     event_guidelines = db.Column(db.Text, nullable=True)
-    terms_conditions = db.Column(db.Text, nullable=True)  
-    status = db.Column(db.String(80), nullable=True)
+    terms_conditions = db.Column(db.Text, nullable=True)
     category = db.Column(db.String(80), nullable=True) 
     comments = db.relationship('Comment', backref='event')
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-
     user = db.relationship('User', backref=db.backref('events', lazy=True))
+    is_cancelled = db.Column(db.Boolean, default=False)
+
+    #Create relationship to Bookings for 'Status' logic
+    event_bookings = db.relationship('Bookings', back_populates='event', lazy=True)
+
+    # A method to determine total availability
+    @property
+    def total_availability(self):
+        return (self.concession_availability + self.ga_availability + self.vip_availability)
+
+    # A method to calculate total bookings for a specific event
+    @property
+    def total_tickets_booked(self):
+        return sum(bookings.ga_quantity + bookings.concession_quantity + bookings.vip_quantity for bookings in self.event_bookings)
+
+    # Logic to determine status
+    def update_status(self):
+        try:
+            if self.is_cancelled:
+                self.status = "Cancelled"
+            elif self.total_availability == self.total_tickets_booked:
+                self.status = "Sold Out"
+            elif datetime.combine(self.start_date, self.start_time) < datetime.now():
+                self.status = "Inactive"
+            else:
+                self.status = "Open"
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            print(f"Error updating status: {e}")   
+
+    @property
+    def status(self):
+        return self._status
+
+    @status.setter
+    def status (self, value):
+        self._status = value
+
 
     def to_dict(self):
         return {
@@ -65,6 +101,7 @@ class Bookings(db.Model):
     image = db.Column(db.String(400))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
+    event = db.relationship('Event', back_populates='event_bookings', lazy=True)
     ga_quantity = db.Column(db.Integer, default=0)
     concession_quantity = db.Column(db.Integer, default=0)
     vip_quantity = db.Column(db.Integer, default=0)

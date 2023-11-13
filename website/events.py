@@ -48,6 +48,7 @@ bp = Blueprint('event', __name__, url_prefix='/events')
 
 @bp.route('/event/<int:id>')
 def event_details(id):
+    Event.update_status()
     print(f"Event ID: {id}")
     event = Event.query.get_or_404(id)
     comment_form = CommentForm()
@@ -78,7 +79,6 @@ def create():
             vip_availability=form.vip_availability.data,
             description=form.description.data,
             image=db_file_path,
-            status=form.status.data,
             category=form.category.data,
             user_id=current_user.id,
             event_guidelines=form.event_guidelines.data,
@@ -167,6 +167,10 @@ def update_event(id):
             new_image_filename = save_image(form.image.data)
             if new_image_filename:
                 event.image = new_image_filename 
+        if form.image_update.data: # Check if the image file has been updated
+            new_image_filename = save_image(form.image_update.data)
+            if new_image_filename:
+                event.image = new_image_filename
         event.category = form.category.data
         event.event_guidelines = form.event_guidelines.data
         event.terms_conditions = form.terms_conditions.data

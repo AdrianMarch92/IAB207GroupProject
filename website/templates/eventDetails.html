@@ -87,9 +87,9 @@
 
 <script>
     function updateTotal() {
-        var gaPrice = {{ event.ga_price }};
-        var conPrice = {{ event.concession_price }};
-        var vipPrice = {{ event.vip_price }};
+        var gaPrice = event.ga_price ;
+        var conPrice = event.concession_price;
+        var vipPrice = event.vip_price;
 
         var gaQuantity = parseInt(document.getElementById('GAquantity').value) || 0;
         var conQuantity = parseInt(document.getElementById('concessionquantity').value) || 0;

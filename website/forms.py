@@ -42,23 +42,20 @@ class EventForm(FlaskForm):
     vip_price = DecimalField('VIP Price', validators=[InputRequired()])
     vip_availability = IntegerField('VIP Availability', validators=[InputRequired()])
     description = TextAreaField('Description', validators=[InputRequired()])
-    image = FileField('Event Image', validators=[
+    image = FileField('New Event Image', validators=[
         FileRequired(message='Image cannot be empty'),
+        FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
+    image_update = FileField('Update Event Image', validators=[
         FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
     event_guidelines = TextAreaField('Event Guidelines')
     terms_conditions = TextAreaField('Terms and Conditions')
     post_event = SubmitField("Post Event")
-    status = SelectField(
-        'Status',
-        choices=[('open', 'Open'), ('sold_out', 'Sold Out'), ('closed', 'Closed')],
-        validators=[DataRequired()]
-    )
     category = SelectField(
         'Category',
         choices=[('asian', 'Asian'), ('indian', 'Indian'), ('italian', 'Italian'), ('greek', 'Greek'), ('european', 'European'), ('american', 'American')],
         validators=[DataRequired()]
     )
-    submit = SubmitField('Update Event')
+    update_event = SubmitField('Update Event')
 
 
 class CommentForm(FlaskForm):
