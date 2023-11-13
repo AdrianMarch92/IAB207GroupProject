@@ -93,8 +93,10 @@ def create():
         db.session.commit()
         print('Successfully created new event', 'success')
 
+        flash(f"'{event.name}' was successfully created!", 'success')
+
         # Always end with redirect when form is valid
-        return redirect(url_for('event.create'))
+        return redirect(url_for('event.event_details', id=event.id))
 
     else:
       print("Form not validated")

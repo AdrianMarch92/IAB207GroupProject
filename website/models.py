@@ -9,8 +9,7 @@ class User(db.Model, UserMixin):
     emailid = db.Column(db.String(100), index=True, nullable=False)
     contactnumber = db.Column(db.Integer)
     address = db.Column(db.String(15), unique=True, index=True, nullable=True)
-	#password is never stored in the DB, an encrypted password is stored
-	# the storage should be at least 255 chars long
+
     password_hash = db.Column(db.String(255), nullable=False)
 
     # relation to call user.comments and comment.created_by
@@ -55,7 +54,7 @@ class Event(db.Model):
             "start_time": self.start_time.strftime('%H:%M:%S'),
             "end_time": self.end_time.strftime('%H:%M:%S'),
             "category": self.category
-            # Add other fields as needed
+
         }
 
 class Bookings(db.Model):
@@ -76,6 +75,5 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(400))
     created_at = db.Column(db.DateTime, default=datetime.now())
-    #add the foreign keys
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))

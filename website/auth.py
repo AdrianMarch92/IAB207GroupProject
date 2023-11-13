@@ -9,7 +9,7 @@ from . import db
 #create a blueprint
 bp = Blueprint('auth', __name__)
 
-# this is a hint for a login function
+
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     print('In Login View function')
@@ -56,11 +56,12 @@ def register():
             new_user = User(name=uname, password_hash=pwd_hash, emailid=email, contactnumber=ucontact_number, address=uaddress)
             db.session.add(new_user)
             db.session.commit()
+            flash("Account Created!")
             #commit to the database and redirect to HTML page
             return redirect(url_for('main.index'))
     #the else is called when there is a get message
     else:
-        return render_template('user.html', form=register, heading='Register')
+        return render_template('user.html', form=register, heading='Sign Up!')
     
 @bp.route('/logout')
 @login_required

@@ -14,7 +14,7 @@ def create_app():
   
     app=Flask(__name__)  # this is the name of the module/package that is calling this app
     app.debug=True
-    app.secret_key='somesecretgoeshere'
+    app.secret_key='624142'
     #set the app configuration data 
     app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///cuisine_connect_db.sqlite'
 

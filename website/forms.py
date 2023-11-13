@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, IntegerField, DateField, TimeField, DecimalField, SelectField
-from wtforms.validators import InputRequired, Length, Email, EqualTo, DataRequired
+from wtforms.validators import InputRequired, Length, Email, EqualTo, DataRequired, Regexp
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 
 ALLOWED_FILE = {'PNG','JPG','png','jpg'}
@@ -18,8 +18,11 @@ class RegisterForm(FlaskForm):
     contact_number = IntegerField("Contact Number", validators=[InputRequired("Enter a contact number")])
     address = StringField("Address", validators=[InputRequired("Enter an address")])
     #linking two fields - password should be equal to data entered in confirm
-    password=PasswordField("Password", validators=[InputRequired(),
-                  EqualTo('confirm', message="Passwords should match")])
+    password = PasswordField("Password", validators=[
+        InputRequired(),
+        Regexp('(?=.*\d)(?=.*[A-Z])', message="Password must contain at least one capital letter and one number."),
+        EqualTo('confirm', message="Passwords should match")
+    ])
     confirm = PasswordField("Confirm Password")
 
     #submit button
@@ -52,7 +55,7 @@ class EventForm(FlaskForm):
     )
     category = SelectField(
         'Category',
-        choices=[('asian', 'Asian'), ('indian', 'Indian'), ('italian', 'Italian'), ('greek', 'Greek'), ('european', 'European')],
+        choices=[('asian', 'Asian'), ('indian', 'Indian'), ('italian', 'Italian'), ('greek', 'Greek'), ('european', 'European'), ('american', 'American')],
         validators=[DataRequired()]
     )
     submit = SubmitField('Update Event')
