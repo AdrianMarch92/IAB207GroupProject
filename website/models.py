@@ -54,28 +54,19 @@ class Event(db.Model):
         return sum(bookings.ga_quantity + bookings.concession_quantity + bookings.vip_quantity for bookings in self.event_bookings)
 
     # Logic to determine status
-    def update_status(self):
-        try:
-            if self.is_cancelled:
-                self.status = "Cancelled"
-            elif self.total_availability == self.total_tickets_booked:
-                self.status = "Sold Out"
-            elif datetime.combine(self.start_date, self.start_time) < datetime.now():
-                self.status = "Inactive"
-            else:
-                self.status = "Open"
-            db.session.commit()
-        except Exception as e:
-            db.session.rollback()
-            print(f"Error updating status: {e}")   
-
     @property
     def status(self):
-        return self._status
-
-    @status.setter
-    def status (self, value):
-        self._status = value
+        try:
+            if self.is_cancelled:
+                return "Cancelled"
+            elif self.total_availability == self.total_tickets_booked:
+                return "Sold Out"
+            elif datetime.combine(self.start_date, self.start_time) < datetime.now():
+                return "Inactive"
+            else:
+                return "Open"
+        except Exception as e:
+            print(f"Error updating status: {e}")   
 
 
     def to_dict(self):
