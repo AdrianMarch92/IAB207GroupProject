@@ -2,3 +2,4 @@
 
 # Ignore compiled Python files
 __pycache__/
+instance/
