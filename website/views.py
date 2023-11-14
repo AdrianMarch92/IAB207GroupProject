@@ -11,8 +11,6 @@ def index():
     events = Event.query.all()
     recommended_events = Event.query.order_by(Event.id.desc()).limit(4).all()
     all_events = Event.query.all() 
-    for event in all_events:
-        event.update_status()
     return render_template('index.html', events=events, recommended_events=recommended_events, all_events=all_events)
 
 @bp.route('/filter_events', methods=['POST'])
