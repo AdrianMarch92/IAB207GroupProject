@@ -50,7 +50,7 @@ class EventForm(FlaskForm):
     post_event = SubmitField("Post Event")
     category = SelectField(
         'Category',
-        choices=[('asian', 'Asian'), ('indian', 'Indian'), ('italian', 'Italian'), ('greek', 'Greek'), ('european', 'European'), ('american', 'American')],
+        choices=[('asian', 'Asian'), ('indian', 'Indian'), ('italian', 'Italian'), ('greek', 'Greek'), ('european', 'European'), ('american', 'American'), ('south african', 'South African')],
         validators=[DataRequired()]
     )
     update_event = SubmitField('Update Event')
