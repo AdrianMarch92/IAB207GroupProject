@@ -19,9 +19,26 @@
                         <button class="btn btn-success form-control" type="button" data-bs-toggle="collapse" data-bs-target="#createdEvents" aria-expanded="false" aria-controls="multiCollapseExample2">Created Events</button>
                     </div>
                 </div>
-                <div class="collapse" id="userInfo">
-                    <br><br>
-                    No Information yet
+                <div class="collapse show" id="userInfo">
+                    <h4 class="heading">Personal Information</h4><br>
+                    <div class="formLayout">
+                        <div class="container">
+                            <table style="width:100%">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Contact Number</th>
+                                    <th>Address</th>
+                                </tr>
+                                <tr>
+                                    <td>{{ user_info.name }}</td>
+                                    <td>{{ user_info.emailid }}</td>
+                                    <td>{{ user_info.contactnumber }}</td>
+                                    <td>{{ user_info.address }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <div class="collapse show" id="history">
                     <br><br>
@@ -33,6 +50,7 @@
                                     <th>Event Name</th>
                                     <th>Booked Date</th>
                                     <th>Booked Time</th>
+                                    <th>Reference ID</th>
                                 </tr>
                                 {% for booking in booked_events %}
                                 <tr>
@@ -54,6 +72,7 @@
                                     </td>
                                     <td>{{ booking.booking_time.strftime('%d %b %Y') }}</td>
                                     <td>{{ booking.booking_time.strftime('%I:%M %p') }}</td>
+                                    <td>{{ booking.id }}</td>
                                 </tr>
                                 {% endfor %}
                             </table>
@@ -70,7 +89,7 @@
                                 <tr>
                                   <th>Event Name</th>
                                   <th>Date</th>
-                                  <th>Time</th>
+                                  <th>Start Time</th>
                                 </tr>
                                 {% for event in created_events %}
                                 <tr>
@@ -88,8 +107,8 @@
                                                 </div>
                                                 <div class="col-sm-8 center"><b>{{ event.name }}</b></div>
                                     </td>
-                                    <td>{{ event.start_date }}</td>
-                                    <td>{{ event.start_time }}</td>
+                                    <td>{{ event.start_date.strftime('%d %b %Y') }}</td>
+                                    <td>{{ event.start_time.strftime('%I:%M %p') }}</td>
                                     <td><a href="{{ url_for('event.update_event', id=event.id) }}" class="btn btn-primary">Update</a></td>
                                 </tr>
                                 {% endfor %}

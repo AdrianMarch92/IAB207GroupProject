@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
-from .models import Event, Comment, Bookings
+from .models import Event, Comment, Bookings, User
 from .forms import EventForm, CommentForm
 from . import db
 import os
@@ -128,12 +128,12 @@ def post_comment(event_id):
 def profile():
     # Fetch events created by the current user
     created_events = Event.query.filter_by(user_id=current_user.id).all()
-    booked_events = Bookings.query.filter_by(user_id=current_user.id).all()
     # Fetch events booked by the current user
-    # This assumes you have a Booking model that links users to events they've booked
     booked_events = Bookings.query.filter_by(user_id=current_user.id).all()
+    # Feth User's information
+    user_info = User.query.filter_by(id=current_user.id).first()
 
-    return render_template('profile.html', created_events=created_events, booked_events=booked_events)
+    return render_template('profile.html', created_events=created_events, booked_events=booked_events, user_info=user_info)
 
 @bp.route('/update_event/<int:id>', methods=['GET', 'POST'])
 @login_required
