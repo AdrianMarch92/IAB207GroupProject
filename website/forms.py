@@ -43,9 +43,7 @@ class EventForm(FlaskForm):
     vip_availability = IntegerField('VIP Availability', validators=[InputRequired()])
     description = TextAreaField('Description', validators=[InputRequired()])
     image = FileField('New Event Image', validators=[
-        #FileRequired(message='Image cannot be empty'),
-        FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
-    image_update = FileField('Update Event Image', validators=[
+        FileRequired('Please add an image'),
         FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
     event_guidelines = TextAreaField('Event Guidelines')
     terms_conditions = TextAreaField('Terms and Conditions')
