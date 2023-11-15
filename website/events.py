@@ -211,7 +211,7 @@ def book_event(id):
         db.session.add(booking)
         db.session.commit()
         print("success!")
-        flash('Booking successful!')
+        flash('Booking successful! Your Booking reference number is #' + str(booking.id))
     except Exception as e:
         db.session.rollback()
         flash('An error occurred. Booking failed.')
